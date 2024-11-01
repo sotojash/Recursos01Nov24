@@ -1,0 +1,11 @@
+private void OnTriggerEnter2D(Collider2D collision)
+{
+	Espada espada=collision.GetComponent<Espada>();
+	
+	if(!espada)
+	{
+		return;
+	}
+	
+	FindObjectOfType<GameManager>().AlTocarBomba();
+}

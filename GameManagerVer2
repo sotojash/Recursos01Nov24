@@ -1,0 +1,13 @@
+public int puntaje;
+public Text textoPuntaje;
+
+public void AumentarPuntaje()
+{
+	puntaje +=2;
+	textoPuntaje.text=puntaje.ToString();
+}
+
+public void AlTocarBomba()
+{
+	Time.timeScale=0;
+}

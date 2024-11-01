@@ -1,0 +1,41 @@
+public GameObject[] objetoParaArrojar;
+public GameObject bomba;
+public float esperaMinima=0.3f;
+public float esperaMaximca=1f;
+public Transform[] lugaresLanzamiento;
+public float fuerzaMinima=12;
+public float fuerzaMaxima=17;
+
+void Start()
+{
+	startCoroutine(Arrojador());
+}
+
+private IEnumerator Arrojador()
+{
+	while(true)
+	{
+		yield return new WaitForSeconds(Random.Range(esperaMinima,esperaMaxima));
+		Transform t=lugaresLanzamiento[Random.Range(0,lugaresLanzamiento.Length)];
+		
+		GameObject go=null;
+		
+		float p=Random.Range(0,100);
+		if (p<10)
+		{
+			go=bomba;
+		}
+		else
+		{
+			go=objetoParaArrojar[Random.Range(0,objetoParaArrojar.Length)];
+		}
+		
+		GameObject fruta = Instantiate(go,t.position,t.ratation);
+		
+		fruta.GetComponent<Rigidbody2D>().AddForce(t.transform.up*Random.Range(fuerzaMinima,fuerzaMaxima),ForceMode2D.Impulse);
+		
+		//para destruir los objetos frutas q se van creando
+		
+		Destroy(fruta,5);
+	}
+}

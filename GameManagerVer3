@@ -1,0 +1,40 @@
+[Header("Elementos del puntaje")]
+public int puntaje;
+public Text textoPuntaje;
+public Text textoPuntajeFinal;
+
+
+[Header("Elementos GameOver")]
+public GameObject panelGameOver;
+
+public void Awake()
+{
+	panelGameOver.SetActive(false);
+}
+
+public void AumentarPuntaje()
+{
+	puntaje +=2;
+	textoPuntaje.text=puntaje.ToString();
+}
+
+public void AlTocarBomba()
+{
+	panelGameOver.SetActive(true);
+	textoPuntajeFinal.text="Puntaje :" + puntaje.ToString();
+	Time.timeScale=0;
+}
+
+public void Reiniciar()
+{
+	puntaje=0;
+	textoPuntaje.text="0";
+	Time.timeScale=1;
+	panelGameOver.SetActive(false);
+	textoPuntajeFinal.text="0";
+	
+	foreach(GameObject g in GameObject.FindGameObjectsWithTag("Interactivo"))
+	{
+		Destroy(g);
+	}
+}
