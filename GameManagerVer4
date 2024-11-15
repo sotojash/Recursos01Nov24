@@ -3,7 +3,7 @@ public int puntaje;
 public Text textoPuntaje;
 public int mejorPuntaje;
 public Text textoMejorPuntaje;
-public Text textomejorPuntajePanel;
+public Text textoMejorPuntajePanel;
 
 
 
@@ -13,46 +13,46 @@ public Text textoPuntajeFinal;
 
 public void Awake()
 {
-	panelGameOver.SetActive(false);
-	PonerMejorPuntaje();
+    panelGameOver.SetActive(false);
+    PonerMejorPuntaje();
 }
 
 private void PonerMejorPuntaje()
 {
-	mejorPuntaje=PlayerPrefs.GetInt("MejorPuntaje");
-	textoMejorPuntaje.text="Mejor: " + mejorPuntaje.ToString();
+    mejorPuntaje = PlayerPrefs.GetInt("MejorPuntaje");
+    textoMejorPuntaje.text = "Mejor: " + mejorPuntaje.ToString();
 }
 
 public void AumentarPuntaje()
 {
-	puntaje +=2;
-	textoPuntaje.text=puntaje.ToString();
-	
-	if(puntaje > mejorPuntaje)
-	{
-		PlayersPrefs.SetInt("MejorPuntaje",puntaje);
-		textoMejorPuntaje.text="Mejor: " + puntaje.ToString();
-		mejorPuntaje=puntaje;
-	}
+    puntaje += 2;
+    textoPuntaje.text = puntaje.ToString();
+
+    if (puntaje > mejorPuntaje)
+    {
+        PlayerPrefs.SetInt("MejorPuntaje", puntaje);
+        textoMejorPuntaje.text = "Mejor: " + puntaje.ToString();
+        mejorPuntaje = puntaje;
+    }
 }
 
 public void AlTocarBomba()
 {
-	panelGameOver.SetActive(true);
-	textoPuntajeFinal.text="Puntaje :" + puntaje.ToString();
-	textoMejorPuntajePanel.text="Mejor puntaje: " + mejorPuntaje.ToString();
-	Time.timeScale=0;
+    panelGameOver.SetActive(true);
+    textoPuntajeFinal.text = "Puntaje :" + puntaje.ToString();
+    textoMejorPuntajePanel.text = "Mejor puntaje: " + mejorPuntaje.ToString();
+    Time.timeScale = 0;
 }
 
 public void Reiniciar()
 {
-	puntaje=0;
-	textoPuntaje.text=puntaje.ToString();
-	Time.timeScale=1;
-	panelGameOver.SetActive(false);
-	
-	foreach(GameObject g in GameObject.FindGameObjectsWithTag("Interactivo"))
-	{
-		Destroy(g);
-	}
+    puntaje = 0;
+    textoPuntaje.text = puntaje.ToString();
+    Time.timeScale = 1;
+    panelGameOver.SetActive(false);
+
+    foreach (GameObject g in GameObject.FindGameObjectsWithTag("Interactivo"))
+    {
+        Destroy(g);
+    }
 }
